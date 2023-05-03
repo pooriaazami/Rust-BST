@@ -58,5 +58,32 @@ pub mod bst {
         }
     }
 
-    impl<T> BST<T> where T: Eq + PartialEq + Ord + PartialOrd {}
+    impl<T> BST<T>
+    where
+        T: Eq + PartialEq + Ord + PartialOrd,
+    {
+        fn traverse(&self, goal: &BSTNode<T>) -> &BSTNode<T> {
+            todo!()
+        }
+
+        fn add() {
+            todo!()
+        }
+
+        fn remove() {
+            todo!()
+        }
+
+        fn contains() {
+            todo!()
+        }
+
+        fn size() {
+            todo!()
+        }
+
+        fn hight() {
+            todo!()
+        }
+    }
 }
