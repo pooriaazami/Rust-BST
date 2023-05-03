@@ -57,4 +57,6 @@ pub mod bst {
             }
         }
     }
+
+    impl<T> BST<T> where T: Eq + PartialEq + Ord + PartialOrd {}
 }
