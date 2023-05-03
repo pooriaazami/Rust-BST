@@ -1,17 +1,27 @@
 pub mod bst {
+    use std::cmp::Ordering;
 
-    #[derive(PartialEq, Eq, Debug)]
-    pub struct BSTNode<T> {
+    #[derive(Debug, Eq, PartialEq, PartialOrd)]
+    pub struct BSTNode<T>
+    where
+        T: Eq + PartialEq + Ord + PartialOrd,
+    {
         data: T,
         left_node: Box<Option<BSTNode<T>>>,
         right_node: Box<Option<BSTNode<T>>>,
     }
 
-    pub struct BST<T> {
+    pub struct BST<T>
+    where
+        T: Eq + PartialEq + Ord + PartialOrd,
+    {
         root: BSTNode<T>,
     }
 
-    impl<T> BSTNode<T> {
+    impl<T> BSTNode<T>
+    where
+        T: Eq + PartialEq + Ord + PartialOrd,
+    {
         pub fn new(data: T) -> BSTNode<T> {
             BSTNode {
                 data: data,
@@ -30,6 +40,21 @@ pub mod bst {
 
         pub fn right(&self) -> &Box<Option<BSTNode<T>>> {
             &self.right_node
+        }
+    }
+
+    impl<T> Ord for BSTNode<T>
+    where
+        T: Eq + PartialEq + Ord + PartialOrd,
+    {
+        fn cmp(&self, other: &Self) -> Ordering {
+            if self.get_data() > other.get_data() {
+                Ordering::Greater
+            } else if self.get_data() < other.get_data() {
+                Ordering::Less
+            } else {
+                Ordering::Equal
+            }
         }
     }
 }
