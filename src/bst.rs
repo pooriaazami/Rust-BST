@@ -169,5 +169,31 @@ pub mod bst {
         fn hight(&self) {
             todo!()
         }
+
+        fn print_tabs(&self, count: usize) {
+            for _ in 0..count {
+                print!(".");
+            }
+        }
+
+        fn print_tree_node(&self, tabs: usize, node: Option<&BSTNode<T>>)
+        where
+            T: std::fmt::Debug,
+        {
+            if let Some(node) = node {
+                self.print_tabs(tabs);
+                println!("{:?}", node.get_data());
+
+                self.print_tree_node(tabs + 1, node.left());
+                self.print_tree_node(tabs + 1, node.right());
+            }
+        }
+
+        pub fn print_tree(&self)
+        where
+            T: std::fmt::Debug,
+        {
+            self.print_tree_node(0, Some(&self.root));
+        }
     }
 }
