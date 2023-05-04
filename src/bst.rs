@@ -1,5 +1,5 @@
 pub mod bst {
-    use std::cmp::Ordering;
+    use std::cmp::{max, Ordering};
 
     #[derive(Debug, Eq, PartialEq, PartialOrd)]
     pub struct BSTNode<T>
@@ -166,8 +166,20 @@ pub mod bst {
             todo!()
         }
 
-        fn hight(&self) {
-            todo!()
+        fn hight_of_a_node(&self, node: Option<&BSTNode<T>>) -> usize {
+            match node {
+                Some(node) => {
+                    1 + max(
+                        self.hight_of_a_node(node.left()),
+                        self.hight_of_a_node(node.right()),
+                    )
+                }
+                None => 0,
+            }
+        }
+
+        pub fn hight(&self) -> usize {
+            self.hight_of_a_node(Some(&self.root))
         }
 
         fn print_tabs(&self, count: usize) {

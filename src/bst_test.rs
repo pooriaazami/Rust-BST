@@ -70,7 +70,45 @@ mod bst_test {
         assert_eq!(tree.contains(&17), false);
         tree.add(17);
         assert_eq!(tree.contains(&17), true);
+    }
 
+    #[test]
+    fn test_hight() {
+        let mut tree = BST::new(10);
 
+        assert_eq!(tree.hight(), 1);
+
+        tree.add(5);
+        assert_eq!(tree.hight(), 2);
+
+        tree.add(15);
+        assert_eq!(tree.hight(), 2);
+
+        tree.add(2);
+        assert_eq!(tree.hight(), 3);
+
+        tree.add(7);
+        assert_eq!(tree.hight(), 3);
+
+        tree.add(12);
+        assert_eq!(tree.hight(), 3);
+
+        tree.add(20);
+        assert_eq!(tree.hight(), 3);
+
+        tree.add(30);
+        assert_eq!(tree.hight(), 4);
+
+        tree.add(40);
+        assert_eq!(tree.hight(), 5);
+
+        tree.add(50);
+        assert_eq!(tree.hight(), 6);
+
+        tree.add(60);
+        assert_eq!(tree.hight(), 7);
+
+        tree.add(25);
+        assert_eq!(tree.hight(), 7);
     }
 }
