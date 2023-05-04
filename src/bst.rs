@@ -102,6 +102,12 @@ pub mod bst {
     where
         T: Eq + PartialEq + Ord + PartialOrd,
     {
+        pub fn new(data: T) -> BST<T> {
+            BST {
+                root: BSTNode::new(data),
+            }
+        }
+
         fn traverse(&self, goal: &T) -> Option<&BSTNode<T>> {
             let mut current_node = Some(&self.root);
 
@@ -149,7 +155,7 @@ pub mod bst {
             todo!()
         }
 
-        fn contains(&self, data: &T) -> bool {
+        pub fn contains(&self, data: &T) -> bool {
             match self.traverse(data) {
                 Some(_) => true,
                 None => false,

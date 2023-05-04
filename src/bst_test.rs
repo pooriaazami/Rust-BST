@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod bst_test {
-    use crate::bst::bst::BSTNode;
+    use crate::bst::bst::{BSTNode, BST};
 
     #[test]
     fn constudtion_test() {
@@ -33,5 +33,44 @@ mod bst_test {
         assert_eq!(two_1 > three_1, false);
 
         assert_eq!(one_1 == two_1, false);
+    }
+
+    #[test]
+    fn test_build_and_contains() {
+        let mut tree = BST::new(10);
+
+        assert_eq!(tree.contains(&10), true);
+        assert_eq!(tree.contains(&9), false);
+    }
+
+    #[test]
+    fn test_add() {
+        let mut tree = BST::new(10);
+
+        assert_eq!(tree.contains(&5), false);
+        tree.add(5);
+        assert_eq!(tree.contains(&5), true);
+
+        assert_eq!(tree.contains(&15), false);
+        tree.add(15);
+        assert_eq!(tree.contains(&15), true);
+
+        assert_eq!(tree.contains(&2), false);
+        tree.add(2);
+        assert_eq!(tree.contains(&2), true);
+
+        assert_eq!(tree.contains(&7), false);
+        tree.add(7);
+        assert_eq!(tree.contains(&7), true);
+
+        assert_eq!(tree.contains(&12), false);
+        tree.add(12);
+        assert_eq!(tree.contains(&12), true);
+
+        assert_eq!(tree.contains(&17), false);
+        tree.add(17);
+        assert_eq!(tree.contains(&17), true);
+
+
     }
 }
