@@ -34,12 +34,22 @@ pub mod bst {
             &self.data
         }
 
-        pub fn left(&self) -> &Box<Option<BSTNode<T>>> {
-            &self.left_node
+        fn borrow_inside_the_box<'a>(
+            &'a self,
+            node: &'a Box<Option<BSTNode<T>>>,
+        ) -> Option<&BSTNode<T>> {
+            match node.as_ref() {
+                Some(node) => Some(node),
+                None => None,
+            }
         }
 
-        pub fn right(&self) -> &Box<Option<BSTNode<T>>> {
-            &self.right_node
+        pub fn left(&self) -> Option<&BSTNode<T>> {
+            self.borrow_inside_the_box(&self.left_node)
+        }
+
+        pub fn right(&self) -> Option<&BSTNode<T>> {
+            self.borrow_inside_the_box(&self.right_node)
         }
     }
 
@@ -62,8 +72,22 @@ pub mod bst {
     where
         T: Eq + PartialEq + Ord + PartialOrd,
     {
-        fn traverse(&self, goal: &BSTNode<T>) -> &BSTNode<T> {
-            todo!()
+        fn traverse(&self, goal: &BSTNode<T>) -> Option<&BSTNode<T>> {
+            let mut current_node = Some(&self.root);
+
+            while let Some(node) = current_node {
+                if node.get_data() == goal.get_data() {
+                    return Some(node);
+                }
+
+                if goal.get_data() < node.get_data() {
+                    current_node = node.left();
+                } else {
+                    current_node = node.right();
+                }
+            }
+
+            None
         }
 
         fn add() {
